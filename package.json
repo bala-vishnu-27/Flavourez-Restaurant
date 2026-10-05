@@ -1,0 +1,22 @@
+{
+  "name": "flavourez-restaurant",
+  "version": "1.0.0",
+  "description": "Flavourez Restaurant Full-Stack Ordering, Real-Time Tracking & Management System",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "node backend/server.js"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "pdfkit": "^0.15.0",
+    "pino": "^10.3.1",
+    "qrcode": "^1.5.4",
+    "uuid": "^9.0.1",
+    "ws": "^8.16.0"
+  }
+}

@@ -1,0 +1,187 @@
+<!-- ===== track.html ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order | Flavourez</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== PAGE TRANSITION OVERLAY ===== -->
+    <div id="page-transition"></div>
+
+    <header class="main-header">
+        <div class="logo"><img src="logo.png" alt="Flavourez Logo" class="logo-img"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="track.html">Track Order</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn-order">Order Now</a>
+    </header>
+
+    <section class="menu-title">
+        <h1>Track Your Order</h1>
+        <p>Enter your Tracking ID to see your order status</p>
+    </section>
+
+    <section class="track-section">
+        <div class="track-box">
+            <label for="trackInput">Tracking ID</label>
+            <div class="track-input-row">
+                <input type="text" id="trackInput" placeholder="e.g. FLZ23847">
+                <button type="button" id="trackBtn" class="btn-primary">Track</button>
+            </div>
+            <p id="trackError" class="track-error"></p>
+
+            <!-- ===== RICH TRACKING DASHBOARD ===== -->
+            <div id="trackResult" class="track-result" style="display:none;">
+
+                <!-- Order Header -->
+                <div class="track-order-header">
+                    <div>
+                        <p class="track-id-label">Tracking Order</p>
+                        <h3>Order <span id="resultId"></span></h3>
+                    </div>
+                    <span class="track-status-badge">🚚 On the Way</span>
+                </div>
+
+                <!-- Animated Progress Bar with Scooter -->
+                <div class="track-timeline-wrap">
+                    <div class="track-scooter">🛵</div>
+                    <div class="status-timeline">
+                        <div class="status-step done">
+                            <span class="status-dot"></span>
+                            <p>Confirmed</p>
+                        </div>
+                        <div class="status-step done">
+                            <span class="status-dot"></span>
+                            <p>Preparing</p>
+                        </div>
+                        <div class="status-step active">
+                            <span class="status-dot"></span>
+                            <p>On the Way</p>
+                        </div>
+                        <div class="status-step">
+                            <span class="status-dot"></span>
+                            <p>Delivered</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Countdown Timer -->
+                <div class="track-countdown">
+                    <div class="countdown-label">⏱ Estimated Delivery In</div>
+                    <div class="countdown-display" id="countdownDisplay">25:00</div>
+                    <div class="countdown-sub">mins &nbsp;:&nbsp; secs</div>
+                </div>
+
+                <!-- Order Summary Card -->
+                <div class="track-order-summary" id="trackOrderSummary"></div>
+
+                <!-- Delivery Partner Card -->
+                <div class="delivery-partner-card">
+                    <div class="partner-avatar">🧑‍🦱</div>
+                    <div class="partner-info">
+                        <p class="partner-label">Your Delivery Partner</p>
+                        <h4 class="partner-name">Ravi Kumar</h4>
+                        <p class="partner-phone">📞 +91 98765 43210</p>
+                    </div>
+                    <a href="tel:+919876543210" class="partner-call-btn btn-small">📞 Call</a>
+                </div>
+
+                <!-- Timestamp Log -->
+                <div class="timestamp-log">
+                    <h4>📋 Order Activity</h4>
+                    <div class="timestamp-item ts-done">
+                        <span class="ts-icon">✅</span>
+                        <div class="ts-content">
+                            <p class="ts-label">Order Confirmed</p>
+                            <p class="ts-time" id="ts1">—</p>
+                        </div>
+                    </div>
+                    <div class="timestamp-item ts-done">
+                        <span class="ts-icon">🍳</span>
+                        <div class="ts-content">
+                            <p class="ts-label">Preparing Your Food</p>
+                            <p class="ts-time" id="ts2">—</p>
+                        </div>
+                    </div>
+                    <div class="timestamp-item ts-active">
+                        <span class="ts-icon">🚚</span>
+                        <div class="ts-content">
+                            <p class="ts-label">Out for Delivery</p>
+                            <p class="ts-time" id="ts3">—</p>
+                        </div>
+                    </div>
+                    <div class="timestamp-item ts-pending">
+                        <span class="ts-icon">📦</span>
+                        <div class="ts-content">
+                            <p class="ts-label">Delivered</p>
+                            <p class="ts-time">Expected soon...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map Preview -->
+                <div class="track-map-wrap">
+                    <p class="track-map-label">📍 Your order is <strong>2.3 km away</strong></p>
+                    <div class="track-map-frame">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Gandhipuram,+Coimbatore,+Tamil+Nadu&output=embed&z=15"
+                            width="100%" height="200" style="border:0;"
+                            allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div><!-- end trackResult -->
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                  <div class="logo">
+            <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+        </div>
+                <h3>FLAVOUREZ</h3>
+                <p>Delicious food made with love. Fresh ingredients, exceptional taste.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="track.html">Track Order</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 127 Gandhipuram, Coimbatore</p>
+                <p>📞 +91 8667611094</p>
+                <p>✉️ tastyhouse@flavorez.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Flavourez. All Rights Reserved.</p></div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="effects.js"></script>
+    <script src="backend-connect.js"></script>
+</body>
+</html>

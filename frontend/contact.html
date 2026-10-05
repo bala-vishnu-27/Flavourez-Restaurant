@@ -1,0 +1,155 @@
+<!-- ===== contact.html ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Flavourez</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== PAGE TRANSITION OVERLAY ===== -->
+    <div id="page-transition"></div>
+
+    <header class="main-header">
+        <div class="logo"><img src="logo.png" alt="Flavourez Logo" class="logo-img"></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="track.html">Track Order</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn-order">Order Now</a>
+        <button id="darkModeToggle" class="dark-toggle-btn" title="Toggle Dark Mode">🌙</button>
+    </header>
+
+    <section class="menu-title">
+        <h1>Get In Touch</h1>
+        <p>We'd love to hear from you — questions, feedback, or catering requests</p>
+    </section>
+
+    <section class="contact-wrap">
+        <div class="contact-form-box">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+                <label for="cname">Your Name *</label>
+                <input type="text" id="cname" required placeholder="Enter your name">
+
+                <label for="cemail">Email Address *</label>
+                <input type="email" id="cemail" required placeholder="you@example.com">
+
+                <label for="csubject">Subject</label>
+                <select id="csubject">
+                    <option>General Inquiry</option>
+                    <option>Catering Request</option>
+                    <option>Feedback</option>
+                    <option>Complaint</option>
+                </select>
+
+                <label for="cmessage">Message *</label>
+                <textarea id="cmessage" rows="4" required placeholder="Type your message here..."></textarea>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+                <p id="contactSuccess" class="order-success"></p>
+            </form>
+        </div>
+
+        <div class="contact-info-box">
+            <h3>Restaurant Info</h3>
+            <p>📍 <strong>Address:</strong> 127 Gandhipuram, Coimbatore</p>
+            <p>📞 <strong>Phone:</strong> +91 8667611094</p>
+            <p>✉️ <strong>Email:</strong> tastyhouse@flavorez.com</p>
+
+            <h3>Opening Hours</h3>
+            <table class="hours-table">
+                <tr>
+                    <td>Monday - Friday</td>
+                    <td>7:30 AM - 12:00 AM</td>
+                </tr>
+                <tr>
+                    <td>Saturday - Sunday</td>
+                    <td>8:00 AM - 2:00 AM</td>
+                </tr>
+            </table>
+
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">WhatsApp</a>
+            </div>
+
+            <div class="map-embed">
+                <iframe src="https://www.google.com/maps?q=Gandhipuram,Coimbatore&output=embed" width="100%"
+                    height="220" style="border:0; border-radius:12px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section reveal fade-left">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h4>What is your delivery time?</h4>
+            <p>Orders are usually delivered within 30-40 minutes depending on your location.</p>
+        </div>
+        <div class="faq-item">
+            <h4>What payment methods do you accept?</h4>
+            <p>We accept Cash on Delivery, UPI, and Credit/Debit Cards.</p>
+        </div>
+        <div class="faq-item">
+            <h4>Is there a minimum order value?</h4>
+            <p>No minimum order value — order as little or as much as you like!</p>
+        </div>
+        <div class="faq-item">
+            <h4>Do you cater for events?</h4>
+            <p>Yes! Select "Catering Request" in the contact form above and our team will reach out.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+                </div>
+                <h3>FLAVOUREZ</h3>
+                <p>Delicious food made with love. Fresh ingredients, exceptional taste.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="track.html">Track Order</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 127 Gandhipuram, Coimbatore</p>
+                <p>📞 +91 8667611094</p>
+                <p>✉️ tastyhouse@flavorez.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Flavourez. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="effects.js"></script>
+    <script src="backend-connect.js"></script>
+</body>
+
+</html>

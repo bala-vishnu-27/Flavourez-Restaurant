@@ -1,0 +1,471 @@
+<!-- ===== index.html ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flavourez | Savor the Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loading-screen">
+        <div class="loading-logo-text">FLAVOUREZ</div>
+        <div class="loading-tagline">Savor the Experience</div>
+        <div class="loading-bar-wrap">
+            <div class="loading-bar"></div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE TRANSITION OVERLAY ===== -->
+    <div id="page-transition"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="track.html">Track Order</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn-order">Order Now</a>
+        <button id="darkModeToggle" class="dark-toggle-btn" title="Toggle Dark Mode">🌙</button>
+    </header>
+
+    <!-- ===== HERO SECTION (Figma Mouse & Scroll Parallax) ===== -->
+    <section class="hero-banner flz-parallax-wrap">
+        <!-- Floating Parallax Layers -->
+        <div class="flz-parallax-layer" data-mouse-speed="25" style="top: 15%; left: 8%;">
+            <span class="flz-floating-badge">🌿 100% Farm Fresh</span>
+        </div>
+        <div class="flz-parallax-layer" data-mouse-speed="-20" style="top: 25%; right: 10%;">
+            <span class="flz-floating-badge">🔥 Authentic Dum Spices</span>
+        </div>
+        <div class="flz-parallax-layer" data-mouse-speed="35" style="bottom: 20%; left: 12%;">
+            <span class="flz-floating-badge">⚡ 30-Min Fast Delivery</span>
+        </div>
+
+        <div class="hero-overlay">
+            <h1 class="hero-big-text">FLAVOUREZ</h1>
+            <p class="hero-tag">Savor the Ultimate Culinary Experience</p>
+            <a href="menu.html" class="btn-primary">Explore Full Menu</a>
+            <a href="order.html" class="btn-secondary">Order Now</a>
+        </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="features reveal fade-left">
+        <div class="feature-box">
+            <h3>🌿 Fresh Ingredients</h3>
+            <p>Sourced daily from local organic farms</p>
+        </div>
+        <div class="feature-box">
+            <h3>👨‍🍳 Master Chefs</h3>
+            <p>Crafted by multi-cuisine experts</p>
+        </div>
+        <div class="feature-box">
+            <h3>🚚 Express Delivery</h3>
+            <p>Piping hot food delivered in 30 mins</p>
+        </div>
+        <div class="feature-box">
+            <h3>⭐ Premium Quality</h3>
+            <p>Loved & trusted by 4,800+ foodies</p>
+        </div>
+    </section>
+
+    <!-- ===== 1. CHEF'S CULINARY PASSION ===== -->
+    <section class="chef-passion-section reveal fade-right">
+        <div class="chef-container">
+            <div class="chef-img-wrapper" data-parallax-speed="0.08">
+                <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=800&q=80"
+                    alt="Executive Master Chef">
+                <div class="chef-floating-tag">
+                    <h5>Chef Vikramaditya</h5>
+                    <p>Head Executive Chef &bull; 15+ Yrs Mastery</p>
+                </div>
+            </div>
+            <div class="chef-text-content">
+                <h2>Crafted With Passion & Authentic Heritage</h2>
+                <p>At Flavourez, cooking is not just a process—it is an art form. Every spice blend is hand-ground
+                    daily, every broth is simmered for hours, and every dish is prepared fresh upon order to deliver an
+                    unmatchable explosion of flavors.</p>
+
+                <div class="chef-highlights">
+                    <div class="chef-highlight-item">
+                        <h4>🔥 Secret Dum Spices</h4>
+                        <p>32 handpicked whole spices blended in-house</p>
+                    </div>
+                    <div class="chef-highlight-item">
+                        <h4>🌿 Zero Preservatives</h4>
+                        <p>Pure, unadulterated ingredients for healthy taste</p>
+                    </div>
+                    <div class="chef-highlight-item">
+                        <h4>🍲 Artisanal Slow Cooking</h4>
+                        <p>Preserving natural nutrients and rich aromas</p>
+                    </div>
+                    <div class="chef-highlight-item">
+                        <h4>📦 Eco-Thermal Packing</h4>
+                        <p>Keeps your order fresh and hot till your doorstep</p>
+                    </div>
+                </div>
+
+                <a href="about.html" class="btn-primary">Discover Our Story →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 2. INTERACTIVE HOME MENU SHOWCASE & FILTER ===== -->
+    <section class="home-showcase-section reveal fade-left">
+        <h2>Explore Signature Categories</h2>
+        <p class="sub-heading" style="color: #888; margin-bottom: 20px;">Click any dish card to view 3D Inspection &
+            Instant Customizer</p>
+
+        <!-- Filter Tabs -->
+        <div class="home-filter-nav">
+            <button class="home-filter-btn active" data-filter="all">All Specials</button>
+            <button class="home-filter-btn" data-filter="discounts">🔥 Hot Discounts</button>
+            <button class="home-filter-btn" data-filter="biryani">Biryani</button>
+            <button class="home-filter-btn" data-filter="pizza">Pizza & Western</button>
+            <button class="home-filter-btn" data-filter="starters">Starters</button>
+            <button class="home-filter-btn" data-filter="south">South Indian</button>
+            <button class="home-filter-btn" data-filter="desserts">Desserts & Drinks</button>
+        </div>
+
+        <!-- Filterable Grid -->
+        <div class="home-dish-grid">
+            <!-- Dish 1 -->
+            <div class="home-dish-card" data-category="discounts biryani" data-type="nonveg" data-time="20 mins"
+                data-spice="🔥🔥🔥 Spicy" data-cals="520 kcal">
+                <div class="home-dish-img-wrap">
+                    <img src="Header.jpeg" alt="Flavourez Special Chicken Biryani">
+                    <div class="home-dish-zoom-hint">🔍 Click to Inspect 3D Zoom</div>
+                </div>
+                <div class="home-dish-body">
+                    <h4>Flavourez Special Biryani</h4>
+                    <p class="desc">Aromatic Seeraga Samba rice cooked with juicy chicken & secret spices.</p>
+                    <div class="home-dish-footer">
+                        <span class="home-dish-price">₹249</span>
+                        <a href="order.html" class="btn-small">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 2 -->
+            <div class="home-dish-card" data-category="pizza" data-type="nonveg" data-time="18 mins"
+                data-spice="🔥 Mild" data-cals="450 kcal">
+                <div class="home-dish-img-wrap">
+                    <img src="https://images.pexels.com/photos/803290/pexels-photo-803290.jpeg" alt="BBQ Chicken Pizza">
+                    <div class="home-dish-zoom-hint">🔍 Click to Inspect 3D Zoom</div>
+                </div>
+                <div class="home-dish-body">
+                    <h4>Smokey BBQ Chicken Pizza</h4>
+                    <p class="desc">Loaded with tender BBQ chicken chunks, molten mozzarella & bell peppers.</p>
+                    <div class="home-dish-footer">
+                        <span class="home-dish-price">₹329</span>
+                        <a href="order.html" class="btn-small">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 3 -->
+            <div class="home-dish-card" data-category="starters" data-type="nonveg" data-time="15 mins"
+                data-spice="🔥🔥🔥 Hot & Tangy" data-cals="380 kcal">
+                <div class="home-dish-img-wrap">
+                    <img src="https://images.pexels.com/photos/2233729/pexels-photo-2233729.jpeg" alt="Dragon Chicken">
+                    <div class="home-dish-zoom-hint">🔍 Click to Inspect 3D Zoom</div>
+                </div>
+                <div class="home-dish-body">
+                    <h4>Sizzling Dragon Chicken</h4>
+                    <p class="desc">Crispy fried chicken strips tossed in spicy Indo-Chinese chili garlic sauce.</p>
+                    <div class="home-dish-footer">
+                        <span class="home-dish-price">₹279</span>
+                        <a href="order.html" class="btn-small">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 4 -->
+            <div class="home-dish-card" data-category="south" data-type="veg" data-time="12 mins"
+                data-spice="🔥 Mild Spice" data-cals="280 kcal">
+                <div class="home-dish-img-wrap">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.Uj7qSxE33S6nx4iKQ6_VIwHaHa?r=0&pid=Api&P=0&h=180"
+                        alt="Special Ghee Roast Dosa">
+                    <div class="home-dish-zoom-hint">🔍 Click to Inspect 3D Zoom</div>
+                </div>
+                <div class="home-dish-body">
+                    <h4>Royal Ghee Roast Dosa</h4>
+                    <p class="desc">Crispy golden crepe roasted in pure desi ghee, served with 3 coconut chutneys &
+                        sambar.</p>
+                    <div class="home-dish-footer">
+                        <span class="home-dish-price">₹99</span>
+                        <a href="order.html" class="btn-small">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 5 -->
+            <div class="home-dish-card" data-category="pizza" data-type="nonveg" data-time="15 mins"
+                data-spice="🔥🔥 Spicy" data-cals="410 kcal">
+                <div class="home-dish-img-wrap">
+                    <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg"
+                        alt="Ultimate Cheese Burger">
+                    <div class="home-dish-zoom-hint">🔍 Click to Inspect 3D Zoom</div>
+                </div>
+                <div class="home-dish-body">
+                    <h4>Ultimate Monster Burger</h4>
+                    <p class="desc">Double grilled patty with melting cheddar cheese, caramelized onions & house sauce.
+                    </p>
+                    <div class="home-dish-footer">
+                        <span class="home-dish-price">₹199</span>
+                        <a href="order.html" class="btn-small">Order Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dish 6 -->
+            <div class="home-dish-card" data-category="desserts" data-type="veg" data-time="10 mins" data-spice="Sweet"
+                data-cals="340 kcal">
+                <div class="home-dish-img-wrap">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.YLq3a2wyW0BiyWJQEmTOkQHaEL?r=0&pid=Api&P=0&h=180"
+                        alt="Brownie with Ice Cream">
+                    <div class="home-dish-zoom-hint">🔍 Click to Inspect 3D Zoom</div>
+                </div>
+                <div class="home-dish-body">
+                    <h4>Brownie with Ice Cream</h4>
+                    <p class="desc">Warm dark chocolate fudge brownie topped with a scoop of rich vanilla ice cream &
+                        hot fudge.</p>
+                    <div class="home-dish-footer">
+                        <span class="home-dish-price">₹149</span>
+                        <a href="order.html" class="btn-small">Order Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 4. EXCLUSIVE HOME DISCOUNTS & VIP OFFERS ===== -->
+    <section class="home-discounts-section reveal fade-right" id="homeDiscounts">
+        <div class="home-discounts-container">
+            <h2>🔥 Exclusive Home Discounts & VIP Offers</h2>
+            <p class="sub-lead">Save big on your delicious orders with our active promo vouchers!</p>
+
+            <div class="promo-card-grid">
+                <!-- Offer 1: FLAVOUR20 (20% OFF - One Time Use) -->
+                <div class="promo-card">
+                    <div>
+                        <span class="promo-badge-tag">⚡ One-Time Use Voucher</span>
+                        <h3>🏷️ FLAVOUR20 &bull; 20% OFF</h3>
+                        <p>Enjoy flat 20% OFF on your meal! Valid for a single one-time use per customer.</p>
+                    </div>
+                    <div class="promo-action-box">
+                        <span class="promo-code-text">FLAVOUR20</span>
+                        <button type="button" class="copy-promo-btn" data-code="FLAVOUR20">📋 Copy Code</button>
+                    </div>
+                </div>
+
+                <!-- Offer 2: FEAST17 (17% OFF - Orders Above ₹1000) -->
+                <div class="promo-card">
+                    <div>
+                        <span class="promo-badge-tag" style="background: linear-gradient(90deg, #10b981, #059669);">🔥 Orders Above ₹1,000</span>
+                        <h3>🛍️ FEAST17 &bull; 17% OFF</h3>
+                        <p>Get 17% OFF when your total order value exceeds ₹1,000 across all multi-cuisine items!</p>
+                    </div>
+                    <div class="promo-action-box">
+                        <span class="promo-code-text">FEAST17</span>
+                        <button type="button" class="copy-promo-btn" data-code="FEAST17">📋 Copy Code</button>
+                    </div>
+                </div>
+
+                <!-- Offer 3: BDAY25 (Birthday Special 25% OFF) -->
+                <div class="promo-card">
+                    <div>
+                        <span class="promo-badge-tag" style="background: linear-gradient(90deg, #ec4899, #8b5cf6);">🎂 Birthday Celebration</span>
+                        <h3>🎂 BDAY25 &bull; 25% OFF</h3>
+                        <p>Is it your birthday month? Claim a special 25% OFF voucher + complimentary Lava Brownie!</p>
+                    </div>
+                    <div class="promo-action-box">
+                        <span class="promo-code-text">BDAY25</span>
+                        <button type="button" class="copy-promo-btn" data-code="BDAY25">🎁 Claim 25% Birthday Code</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COUNTER STATS ===== -->
+    <section class="stats reveal fade-left">
+        <div class="stat-box">
+            <h2 class="counter" data-target="65">0</h2>
+            <p>Dishes on Menu</p>
+        </div>
+        <div class="stat-box">
+            <h2 class="counter" data-target="4800">0</h2>
+            <p>Happy Customers</p>
+        </div>
+        <div class="stat-box">
+            <h2 class="counter" data-target="7">0</h2>
+            <p>Cuisines Served</p>
+        </div>
+        <div class="stat-box">
+            <h2 class="counter" data-target="20">0</h2>
+            <p>% Off First Order</p>
+        </div>
+    </section>
+
+    <!-- ===== OFFER BANNER ===== -->
+    <section class="offer-banner reveal fade-right">
+        <div class="offer-text">
+            <h3>Get 20% Off On Your First Order!</h3>
+            <p>Use code <strong>FLAVOUR20</strong> at checkout</p>
+            <a href="order.html" class="btn-primary">Order Now</a>
+        </div>
+    </section>
+
+    <!-- ===== 5. CUSTOMER WALL & REVIEWS ===== -->
+    <section class="customer-wall-section reveal fade-left">
+        <div class="customer-wall-header">
+            <h2>Loved By Thousands of Foodies</h2>
+            <div class="rating-overview-bar">
+                <span class="rating-big-num">4.9 / 5.0</span>
+                <span style="color: #ff8c00; font-size: 20px;">★★★★★</span>
+                <span style="color: #777; font-size: 14px; font-weight: 600;">Based on 4,800+ Verified Orders</span>
+            </div>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"The Dum Biryani flavor is mind-blowing! You can actually smell the authentic hand-ground spices as
+                    soon as you open the thermal pack."</p>
+                <h4>- Arjun, Chennai</h4>
+                <p class="stars">★★★★★ &bull; Verified Buyer</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"Super fast 25 minute delivery, and the BBQ Chicken Pizza arrived piping hot with molten cheese
+                    stretch! 10/10 experience."</p>
+                <h4>- Priya, Coimbatore</h4>
+                <p class="stars">★★★★★ &bull; Verified Buyer</p>
+            </div>
+            <div class="testimonial-card">
+                <p>"The 3D Dish inspection on this website made me order instantly! And the food actually matched the
+                    photos perfectly."</p>
+                <h4>- Karthik, Madurai</h4>
+                <p class="stars">★★★★★ &bull; Verified Buyer</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 6. CHEF SPOTLIGHT BANNER ===== -->
+    <section class="chef-spotlight-banner reveal fade-right">
+        <div class="spotlight-content">
+            <div class="spotlight-text">
+                <h3>🔥 Dish of the Week: Royal Mutton Chukka</h3>
+                <p>Slow-roasted tender mutton pieces tossed in crushed black pepper & shallots.</p>
+            </div>
+            <a href="order.html" class="btn-primary" style="background: #ffffff; color: #ff3d00;">Claim Special Discount
+                →</a>
+        </div>
+    </section>
+
+    <!-- ===== 7. INTERACTIVE FAQ ACCORDION ===== -->
+    <section class="faq-section reveal fade-left">
+        <div class="faq-container">
+            <h2>Frequently Asked Questions</h2>
+
+            <div class="faq-item active">
+                <div class="faq-question">
+                    <span>🚀 How fast is your delivery service?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Our dedicated express delivery fleet ensures your hot food reaches your doorstep within 30 minutes
+                    of placing your order. You can track your order live on our Track Order page!
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>🌿 Are your Veg and Non-Veg kitchens separated?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! We strictly maintain separate cooking stations, utensils, and oil friers for 100% Pure
+                    Vegetarian items to adhere to the highest hygiene and dietary standards.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>🔥 Can I customize my dish's spice level?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! During checkout on our Order page, you can add custom cooking notes (e.g. Extra Spicy,
+                    Medium, Low Oil, No Onion/Garlic).
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>🎉 Do you accept party or catering orders?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we cater for birthday parties, corporate lunches, and family gatherings with special bulk
+                    discounts. Contact us directly via our Contact page.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+                </div>
+                <h3>FLAVOUREZ</h3>
+                <p>Delicious food made with love. Fresh ingredients, exceptional taste, and unforgettable parallax
+                    culinary experience.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="track.html">Track Order</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 127 Gandhipuram, Coimbatore</p>
+                <p>📞 +91 8667611094</p>
+                <p>✉️ tastyhouse@flavorez.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Flavourez. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="effects.js"></script>
+    <script src="backend-connect.js"></script>
+</body>
+
+</html>

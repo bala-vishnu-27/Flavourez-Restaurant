@@ -1,0 +1,168 @@
+<!-- ===== order.html ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Now | Flavourez</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== PAGE TRANSITION OVERLAY ===== -->
+    <div id="page-transition"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="track.html">Track Order</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn-order">Order Now</a>
+        <button id="darkModeToggle" class="dark-toggle-btn" title="Toggle Dark Mode">🌙</button>
+    </header>
+
+    <!-- ===== ORDER PAGE TITLE ===== -->
+    <section class="menu-title">
+        <h1>Place Your Order</h1>
+        <p>Fill in your details below and we'll get your food ready hot & fresh!</p>
+    </section>
+
+    <!-- ===== ORDER FORM ===== -->
+    <section class="order-section">
+        <form class="order-form" id="orderForm">
+
+            <h3>1. Your Details</h3>
+
+            <label for="fullname">Full Name *</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" pattern="[0-9]{10}" required>
+
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com">
+
+            <label for="address">Delivery Address *</label>
+            <textarea id="address" name="address" rows="3" placeholder="House no, Street, Area, City" required></textarea>
+
+            <hr>
+
+            <h3>2. Order Type</h3>
+
+            <div class="radio-group">
+                <label><input type="radio" name="ordertype" value="delivery" checked> Home Delivery</label>
+                <label><input type="radio" name="ordertype" value="pickup"> Self Pickup</label>
+            </div>
+
+            <label for="time">Preferred Time</label>
+            <input type="time" id="time" name="time">
+
+            <hr>
+
+            <h3>3. Your Selected Dishes</h3>
+
+            <div id="orderItemsContainer" class="order-items"></div>
+            <p id="cartTotal" class="cart-total"></p>
+
+            <p class="note">Want to add more? Visit our <a href="menu.html">Full Menu</a>, click "+ Add" on any dish, then come back here.</p>
+
+            <label for="instructions">Special Instructions</label>
+            <textarea id="instructions" name="instructions" rows="2" placeholder="Less spicy, no onions, etc. (optional)"></textarea>
+
+            <!-- ===== PROMO CODE BOX ===== -->
+            <div class="promo-box" style="background: rgba(255, 140, 0, 0.06); border: 1px dashed #ff8c00; border-radius: 16px; padding: 15px; margin: 15px 0;">
+                <label for="promoCodeInput" style="font-weight: bold; font-size: 14px; display: block; margin-bottom: 8px; color: #ff3d00;">🏷️ Have a Promo / Discount Code?</label>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" id="promoCodeInput" placeholder="Enter code (e.g. FLAVOUR20, FEAST17, BDAY25)" style="flex: 1; padding: 10px 14px; border-radius: 20px; border: 1px solid #ccc; text-transform: uppercase; font-weight: bold; outline: none;">
+                    <button type="button" id="applyPromoBtn" class="btn-small" style="background: linear-gradient(90deg, #ff8c00, #ff3d00); color: #fff; border: none; cursor: pointer; padding: 10px 20px; border-radius: 20px; font-weight: bold;">Apply Code</button>
+                </div>
+                <p id="promoMsg" style="font-size: 13px; margin-top: 8px; font-weight: bold;"></p>
+            </div>
+
+            <hr>
+
+            <h3>4. Payment Method</h3>
+
+            <select id="payment" name="payment" required>
+                <option value="">-- Select Payment Method --</option>
+                <option value="cod">Cash on Delivery</option>
+                <option value="upi">UPI / GPay / PhonePe</option>
+                <option value="card">Credit / Debit Card</option>
+            </select>
+
+            <!-- ===== QR CODE SCANNER (UPI) ===== -->
+            <div id="upiQrSection" class="upi-qr-section" style="display:none">
+                <div class="upi-qr-box">
+                    <p class="upi-qr-label">📱 Scan to pay with Google Pay / Any UPI App</p>
+                    <img src="scanner.jpeg" alt="Google Pay QR Code" class="upi-qr-img">
+                    <p class="upi-qr-note">After payment, enter your UPI Transaction ID below (optional)</p>
+                    <input type="text" id="upiTxnId" class="upi-txn-input" placeholder="Enter UPI Transaction ID (optional)">
+                </div>
+            </div>
+
+            <div class="checkbox-terms">
+                <label><input type="checkbox" required> I agree to the Terms & Conditions *</label>
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" class="btn-primary">Place Order</button>
+                <button type="reset" class="btn-secondary-dark">Clear Form</button>
+            </div>
+
+            <p id="orderSuccess" class="order-success"></p>
+            <div id="receiptBtnWrap" style="display:none; text-align:center; margin-top:15px;">
+                <button type="button" id="downloadReceiptBtn" class="btn-primary">📄 Download Receipt (PDF)</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                  <div class="logo">
+            <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+        </div>
+                <h3>FLAVOUREZ</h3>
+                <p>Delicious food made with love. Fresh ingredients, exceptional taste.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="track.html">Track Order</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 127 Gandhipuram, Coimbatore</p>
+                <p>📞 +91 8667611094</p>
+                <p>✉️ tastyhouse@flavorez.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Flavourez. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="effects.js"></script>
+    <script src="backend-connect.js"></script>
+</body>
+</html>

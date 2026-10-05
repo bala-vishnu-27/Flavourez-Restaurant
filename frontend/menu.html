@@ -1,0 +1,294 @@
+<!-- ===== menu.html ===== -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu | Flavourez</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== PAGE TRANSITION OVERLAY ===== -->
+    <div id="page-transition"></div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="track.html">Track Order</a></li>
+            </ul>
+        </nav>
+        <a href="order.html" class="btn-order">Order Now</a>
+        <button id="darkModeToggle" class="dark-toggle-btn" title="Toggle Dark Mode">🌙</button>
+    </header>
+
+    <!-- ===== FLOATING CART BAR ===== -->
+    <div class="cart-bar" id="cartBar">
+        <span id="cartCount">🛒 0 items selected</span>
+        <a href="order.html" class="btn-small cart-goto">Go to Order Page →</a>
+    </div>
+
+    <!-- ===== MENU PAGE TITLE ===== -->
+    <section class="menu-title">
+        <h1>Our Full Menu</h1>
+        <p>South Indian &bull; North Indian &bull; Chinese &bull; Western &bull; Drinks &bull; Desserts &bull; Specials</p>
+        <!-- ===== SEARCH BAR ===== -->
+        <div class="menu-search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="menuSearchInput" class="menu-search-input" placeholder="Search dishes... (e.g. Biryani, Dosa, Pizza)">
+            <button id="menuSearchClear" class="search-clear-btn" title="Clear search">✕</button>
+        </div>
+        <p id="searchResultCount" class="search-result-count"></p>
+    </section>
+
+    <!-- ===== CATEGORY TABS ===== -->
+    <div class="category-tabs">
+        <button class="tab-btn active" data-tab="south">South Indian</button>
+        <button class="tab-btn" data-tab="north">North Indian</button>
+        <button class="tab-btn" data-tab="chinese">Chinese</button>
+        <button class="tab-btn" data-tab="western">Western Delights</button>
+        <button class="tab-btn" data-tab="drinks">Cool Drinks & Juices</button>
+        <button class="tab-btn" data-tab="desserts">Desserts</button>
+        <button class="tab-btn" data-tab="specials">Flavourez Specials</button>
+        <button class="tab-btn" data-tab="combos">🎉 Combos</button>
+    </div>
+
+    <!-- ===== VEG / NON-VEG / ALL FILTER ===== -->
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="veg"><span class="dot veg-dot"></span> Veg</button>
+        <button class="filter-btn" data-filter="nonveg"><span class="dot nonveg-dot"></span> Non-Veg</button>
+    </div>
+
+    <!-- ===== MENU CONTENT ===== -->
+    <section class="menu-content">
+
+        <!-- SOUTH INDIAN -->
+        <div class="tab-content active" id="south">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="veg" data-name="Idli" data-price="49"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.kRJD3DnwjPbW-jhW2u7MPwHaFW?r=0&pid=Api&P=0&h=180" alt="Idli"><h4>Idli</h4><p class="price">₹49</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Ghee Podi Idli" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.sPB2ZFQ2Uc-O8DuYz02AGQHaEO?r=0&pid=Api&P=0&h=180" alt="Ghee Podi Idli"><h4>Ghee Podi Idli</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Parotta" data-price="79"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.hXCdf_1LlnHth58YKtbgPAHaE8?r=0&pid=Api&P=0&h=180" alt="Parotta"><h4>Parotta</h4><p class="price">₹79</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Plain Dosa" data-price="59"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.A-2VydlgLesMfvz4kvX9uQHaEf?r=0&pid=Api&P=0&h=180" alt="Plain Dosa"><h4>Plain Dosa</h4><p class="price">₹59</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Ghee Roast" data-price="99"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.Uj7qSxE33S6nx4iKQ6_VIwHaHa?r=0&pid=Api&P=0&h=180" alt="Ghee Roast"><h4>Ghee Roast</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Masala Dosa" data-price="89"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.BJwK1TGMGt8oxpDDN14FVwHaHa?r=0&pid=Api&P=0&h=180" alt="Masala Dosa"><h4>Masala Dosa</h4><p class="price">₹89</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Onion Dosa" data-price="89"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.A-RNu0pX7IEjJlcNBYuQTAHaIH?r=0&pid=Api&P=0&h=180" alt="Onion Dosa"><h4>Onion Dosa</h4><p class="price">₹89</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Rava Dosa" data-price="99"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.vCj3ucezeLUk4B7Y5tPf9wHaHa?r=0&pid=Api&P=0&h=180" alt="Rava Dosa"><h4>Rava Dosa</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Pongal" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.V6binp0tIR_r3rOJ3sQRBQHaE7?r=0&pid=Api&P=0&h=180" alt="Pongal"><h4>Pongal</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Poori Masala" data-price="79"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.O2_38tSeUFcZT4Xcyrw1MwHaE8?r=0&pid=Api&P=0&h=180" alt="Poori Masala"><h4>Poori Masala</h4><p class="price">₹79</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Chapati Kurma" data-price="89"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.Me-zWspEVGJ7eBLrIJrCjgHaFx?r=0&pid=Api&P=0&h=180" alt="Chapati Kurma"><h4>Chapati Kurma</h4><p class="price">₹89</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Veg Meals" data-price="129"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.DLE53mGjjxETHBBrVpjlogHaEJ?r=0&pid=Api&P=0&h=180" alt="Veg Meals"><h4>Veg Meals</h4><p class="price">₹129</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Biryani" data-price="199"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.hEWnvEk0B-FzyoSa0E2C7gHaE8?r=0&pid=Api&P=0&h=180" alt="Chicken Biryani"><h4>Chicken Biryani</h4><p class="price">₹199</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Mutton Biryani" data-price="249"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.MUgHlUP9l9EW2BlwZB_LqwHaHa?r=0&pid=Api&P=0&h=180" alt="Mutton Biryani"><h4>Mutton Biryani</h4><p class="price">₹249</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Egg Biryani" data-price="149"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.QAphogpEgnFWpfiksUm8BwHaE7?r=0&pid=Api&P=0&h=180" alt="Egg Biryani"><h4>Egg Biryani</h4><p class="price">₹149</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken 65" data-price="179"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.QyN8UBAqqQqMIBlatiq0XgHaFM?r=0&pid=Api&P=0&h=180" alt="Chicken 65"><h4>Chicken 65</h4><p class="price">₹179</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Pepper Chicken" data-price="189"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.WMe3JfnPKP-jPr7FMKWQpAHaHa?r=0&pid=Api&P=0&h=180" alt="Pepper Chicken"><h4>Pepper Chicken</h4><p class="price">₹189</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Chukka" data-price="189"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.WMe3JfnPKP-jPr7FMKWQpAHaHa?r=0&pid=Api&P=0&h=180" alt="Chicken Chukka"><h4>Chicken Chukka</h4><p class="price">₹189</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Mutton Chukka" data-price="239"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.V16QlPv6XtcJt-kLVP-HwwAAAA?r=0&pid=Api&P=0&h=180" alt="Mutton Chukka"><h4>Mutton Chukka</h4><p class="price">₹239</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Fish Fry" data-price="199"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.3WASoC8baHYyey1hPk3MHAHaEK?r=0&pid=Api&P=0&h=180" alt="Fish Fry"><h4>Fish Fry</h4><p class="price">₹199</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Egg Parotta" data-price="229"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.l75tXJXjwudVCbRTUrMzPQHaFj?r=0&pid=Api&P=0&h=180" alt="Egg Parotta"><h4>Egg Parotta</h4><p class="price">₹229</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Crab Masala" data-price="259"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP._E-x6BOQKBlaCReQNn2RRwHaEK?r=0&pid=Api&P=0&h=180" alt="Crab Masala"><h4>Crab Masala</h4><p class="price">₹259</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Egg Curry" data-price="99"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.k_vM9dXkxrZU0rRNc-SGqAHaHa?r=0&pid=Api&P=0&h=180" alt="Egg Curry"><h4>Egg Curry</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Meals" data-price="189"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.FScS1JFDm2nrcXXPF5ulpwHaEJ?r=0&pid=Api&P=0&h=180" alt="Chicken Meals"><h4>Chicken Meals</h4><p class="price">₹189</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Mutton Meals" data-price="239"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.aTrdpD-zp_sHhPV_luLhhAHaE7?r=0&pid=Api&P=0&h=180" alt="Mutton Meals"><h4>Mutton Meals</h4><p class="price">₹239</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- NORTH INDIAN -->
+        <div class="tab-content" id="north">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="veg" data-name="Butter Naan" data-price="49"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP._XDMZYR6mFsmGubBCUGoRQHaHa?r=0&pid=Api&P=0&h=180" alt="Butter Naan"><h4>Butter Naan</h4><p class="price">₹49</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Garlic Naan" data-price="59"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.p3CqzaprolIx4p8aTnZGmwHaEK?r=0&pid=Api&P=0&h=180" alt="Garlic Naan"><h4>Garlic Naan</h4><p class="price">₹59</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Paneer Butter Masala" data-price="189"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.Hw9TUiGlTvwj0Ae8vPe55AHaE8?r=0&pid=Api&P=0&h=180" alt="Paneer Butter Masala"><h4>Paneer Butter Masala</h4><p class="price">₹189</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Dal Makhani" data-price="149"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.cO1N7ff2Vp2wt98Yx39JcwHaLG?r=0&pid=Api&P=0&h=180" alt="Dal Makhani"><h4>Dal Makhani</h4><p class="price">₹149</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+
+                <div class="dish-card" data-type="nonveg" data-name="Butter Chicken" data-price="229"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.Jpm1O-H5eboFsapBwG2PJgHaE8?r=0&pid=Api&P=0&h=180" alt="Butter Chicken"><h4>Butter Chicken</h4><p class="price">₹229</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Tikka" data-price="219"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.T0Cjsi8Fg8VMY_2RbmlNUwHaHa?r=0&pid=Api&P=0&h=180" alt="Chicken Tikka"><h4>Chicken Tikka</h4><p class="price">₹219</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Tandoori Chicken" data-price="249"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.C7BktG6ubAKFnhqEPEwvYwHaHa?r=0&pid=Api&P=0&h=180" alt="Tandoori Chicken"><h4>Tandoori Chicken</h4><p class="price">₹249</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- CHINESE -->
+        <div class="tab-content" id="chinese">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="veg" data-name="Gobi Manchurian" data-price="139"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.bLSw5oAN7MN07ohBZQg0YwHaHa?r=0&pid=Api&P=0&h=180" alt="Gobi Manchurian"><h4>Gobi Manchurian</h4><p class="price">₹139</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Veg Fried Rice" data-price="129"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.gpD8wC7-RpOqR1_eqtf4FQHaE8?r=0&pid=Api&P=0&h=180" alt="Veg Fried Rice"><h4>Veg Fried Rice</h4><p class="price">₹129</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Veg Noodles" data-price="129"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.1ZOyvs21tSlaVeUoPvLApAHaFj?r=0&pid=Api&P=0&h=180" alt="Veg Noodles"><h4>Veg Noodles</h4><p class="price">₹129</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Fried Rice" data-price="169"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.FVnjHoWkS6W09g159HcLhAHaEk?r=0&pid=Api&P=0&h=180" alt="Chicken Fried Rice"><h4>Chicken Fried Rice</h4><p class="price">₹169</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Noodles" data-price="169"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.NQiMmzvn-RUh5aIThqzoMAHaEK?r=0&pid=Api&P=0&h=180" alt="Chicken Noodles"><h4>Chicken Noodles</h4><p class="price">₹169</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chilli Chicken" data-price="189"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.NSqCTG0XOdVSzFVjdhDxZQHaFj?r=0&pid=Api&P=0&h=180" alt="Chilli Chicken"><h4>Chilli Chicken</h4><p class="price">₹189</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Dragon Chicken" data-price="199"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.YOe2UCMlSI64Hn4MS2PJDwHaE8?r=0&pid=Api&P=0&h=180" alt="Dragon Chicken"><h4>Dragon Chicken</h4><p class="price">₹199</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- WESTERN DELIGHTS -->
+        <div class="tab-content" id="western">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="veg" data-name="Margherita Pizza" data-price="249"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.VUCfq4X_8rvvCIuwGtiAnQHaHa?r=0&pid=Api&P=0&h=180" alt="Margherita Pizza"><h4>Margherita Pizza</h4><p class="price">₹249</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Farmhouse Pizza" data-price="279"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.7_CXWSs9-5yuprNqUMUZCwHaE8?r=0&pid=Api&P=0&h=180" alt="Farmhouse Pizza"><h4>Farmhouse Pizza</h4><p class="price">₹279</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="BBQ Chicken Pizza" data-price="329"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP._NbdPz52hNei9VX0rI8duQHaEJ?r=0&pid=Api&P=0&h=180" alt="BBQ Chicken Pizza"><h4>BBQ Chicken Pizza</h4><p class="price">₹329</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Burger" data-price="179"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.By-7BfHD1Ioy31mkXauh7gHaFj?r=0&pid=Api&P=0&h=180" alt="Chicken Burger"><h4>Chicken Burger</h4><p class="price">₹179</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Cheese Burger" data-price="149"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.JutNcaiAJ983PF7I_ks5GgHaE8?r=0&pid=Api&P=0&h=180" alt="Cheese Burger"><h4>Cheese Burger</h4><p class="price">₹149</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="French Fries" data-price="99"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.bXQHf46SRhgaXemaKM28zgHaEK?r=0&pid=Api&P=0&h=180" alt="French Fries"><h4>French Fries</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Chicken Nuggets" data-price="159"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.gdWlzDxm3kmUY_AoO8fixAHaJ4?r=0&pid=Api&P=0&h=180" alt="Chicken Nuggets"><h4>Chicken Nuggets</h4><p class="price">₹159</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Pasta Alfredo" data-price="199"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.cT9U_roaDJ0wWIK8_xc-wAHaFj?r=0&pid=Api&P=0&h=180" alt="Pasta Alfredo"><h4>Pasta Alfredo</h4><p class="price">₹199</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- COOL DRINKS & JUICES -->
+        <div class="tab-content" id="drinks">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="veg" data-name="Fresh Lime Juice" data-price="49"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.yYuL3BYi4ckLrsEKkWTSpwHaHa?r=0&pid=Api&P=0&h=180" alt="Fresh Lime Juice"><h4>Fresh Lime Juice</h4><p class="price">₹49</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Watermelon Juice" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.2tYCXeFl7KqsLs887YuRXQHaE7?r=0&pid=Api&P=0&h=180" alt="Watermelon Juice"><h4>Watermelon Juice</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Mango Juice" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.taBv5RrR2ut4bJQS3KzCewHaFP?r=0&pid=Api&P=0&h=180" alt="Mango Juice"><h4>Mango Juice</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Orange Juice" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.sndGasD8jO0wZUazXdwkzQHaEK?r=0&pid=Api&P=0&h=180" alt="Orange Juice"><h4>Orange Juice</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Oreo Shake" data-price="99"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.YmUkCL3jdnB0PdkEvhHU7AHaEO?r=0&pid=Api&P=0&h=180" alt="Oreo Shake"><h4>Oreo Shake</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Chocolate Shake" data-price="99"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.DQUoOK8MWBykMO8cS07-HQHaEJ?r=0&pid=Api&P=0&h=180" alt="Chocolate Shake"><h4>Chocolate Shake</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Vanilla Milkshake" data-price="89"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.y6CGXkqrp6mqfNFWwJT1iAHaE8?r=0&pid=Api&P=0&h=180" alt="Vanilla Milkshake"><h4>Vanilla Milkshake</h4><p class="price">₹89</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Cold Coffee" data-price="79"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.6OGuxrfR67ZHHggyKcl8kQHaHa?r=0&pid=Api&P=0&h=180" alt="Cold Coffee"><h4>Cold Coffee</h4><p class="price">₹79</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Mojito" data-price="89"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.Sg2Zv6F6ecgQk_nAOID-SgHaEJ?r=0&pid=Api&P=0&h=180" alt="Mojito"><h4>Mojito</h4><p class="price">₹89</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Pepsi" data-price="40"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.hoeqRPqMl7gxk1S7Ga5ktQHaEK?r=0&pid=Api&P=0&h=180" alt="Pepsi"><h4>Pepsi</h4><p class="price">₹40</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Coca-Cola" data-price="40"><span class="dot veg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.E68J36IJuz1Y0P02J88XsAHaEo?r=0&pid=Api&P=0&h=180" alt="Coca-Cola"><h4>Coca-Cola</h4><p class="price">₹40</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Sprite" data-price="40"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.iPriIA_NtXGAzHSDCli5UwHaEo?r=0&pid=Api&P=0&h=180" alt="Sprite"><h4>Sprite</h4><p class="price">₹40</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- DESSERTS -->
+        <div class="tab-content" id="desserts">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="veg" data-name="Gulab Jamun" data-price="59"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.B32bansRI7RS3yfbUSEBNwHaHa?r=0&pid=Api&P=0&h=180" alt="Gulab Jamun"><h4>Gulab Jamun</h4><p class="price">₹59</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Brownie with Ice Cream" data-price="129"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.YLq3a2wyW0BiyWJQEmTOkQHaEL?r=0&pid=Api&P=0&h=180" alt="Brownie with Ice Cream"><h4>Brownie with Ice Cream</h4><p class="price">₹129</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Vanilla Ice Cream" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.UFCUpkcu-nbuMqi4Y6eeWgHaE7?r=0&pid=Api&P=0&h=180" alt="Vanilla Ice Cream"><h4>Vanilla Ice Cream</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Chocolate Ice Cream" data-price="69"><span class="dot veg-dot corner-dot"></span><img src="https://tse3.mm.bing.net/th/id/OIP.j4P18KdJeLuWIEqkZk3DoQHaEo?r=0&pid=Api&P=0&h=180" alt="Chocolate Ice Cream"><h4>Chocolate Ice Cream</h4><p class="price">₹69</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="veg" data-name="Falooda" data-price="99"><span class="dot veg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.zwGxffoyS6GeCFOgK_iyZQHaEK?r=0&pid=Api&P=0&h=180" alt="Falooda"><h4>Falooda</h4><p class="price">₹99</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- FLAVOUREZ SPECIALS -->
+        <div class="tab-content" id="specials">
+            <div class="dish-grid">
+                <div class="dish-card" data-type="nonveg" data-name="Flavourez Special Chicken Biryani" data-price="249"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.UI6wfhsE9XEBC23wyzXw7QHaHa?r=0&pid=Api&P=0&h=180" alt="Flavourez Special Chicken Biryani"><h4>Flavourez Special Chicken Biryani</h4><p class="price">₹249</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Flavourez BBQ Chicken Pizza" data-price="329"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.lRY-mnYtWX9Fm0gtGZ_foQHaEJ?r=0&pid=Api&P=0&h=180" alt="Flavourez BBQ Chicken Pizza"><h4>Flavourez BBQ Chicken Pizza</h4><p class="price">₹329</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Flavourez Dragon Chicken" data-price="279"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse4.mm.bing.net/th/id/OIP.nQq8s2IMO578Ebu2_HkuBgHaJ4?r=0&pid=Api&P=0&h=180" alt="Flavourez Dragon Chicken"><h4>Flavourez Dragon Chicken</h4><p class="price">₹279</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Flavourez Ultimate Burger" data-price="199"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse2.mm.bing.net/th/id/OIP.C6GhXnRJ_T5q75s9AIkWgwHaE8?r=0&pid=Api&P=0&h=180" alt="Flavourez Ultimate Burger"><h4>Flavourez Ultimate Burger</h4><p class="price">₹199</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+                <div class="dish-card" data-type="nonveg" data-name="Flavourez Family Combo" data-price="599"><span class="dot nonveg-dot corner-dot"></span><img src="https://tse1.mm.bing.net/th/id/OIP.OIlRpwUiy0FIe_UlkcZU3QHaE7?r=0&pid=Api&P=0&h=180" alt="Flavourez Family Combo"><h4>Flavourez Family Combo</h4><p class="price">₹599</p><button type="button" class="add-btn btn-small">Add to Cart</button></div>
+            </div>
+        </div>
+
+        <!-- COMBO OFFERS TAB -->
+        <div class="tab-content" id="combos">
+            <div class="combos-tab-inner">
+                <p class="combo-sub">Best value bundle deals — Save big, eat more!</p>
+                <div class="combo-grid">
+
+                    <div class="combo-card">
+                        <div class="combo-badge">🔥 HOT DEAL</div>
+                        <div class="combo-icon">🍛🥗🥤</div>
+                        <h3>Meals Combo</h3>
+                        <p>Veg Meals + Salad + Cold Coffee</p>
+                        <div class="combo-price">
+                            <span class="combo-original">₹247</span>
+                            <span class="combo-offer">₹199</span>
+                        </div>
+                        <p class="combo-save">You save ₹48!</p>
+                        <button class="combo-add-btn" data-items="Veg Meals,Cold Coffee" data-prices="129,79">Add Combo to Cart 🛒</button>
+                    </div>
+
+                    <div class="combo-card">
+                        <div class="combo-badge combo-badge-green">💚 VEG SPECIAL</div>
+                        <div class="combo-icon">🍕🍟🧃</div>
+                        <h3>Western Veg Combo</h3>
+                        <p>Margherita Pizza + French Fries + Mango Juice</p>
+                        <div class="combo-price">
+                            <span class="combo-original">₹417</span>
+                            <span class="combo-offer">₹349</span>
+                        </div>
+                        <p class="combo-save">You save ₹68!</p>
+                        <button class="combo-add-btn" data-items="Margherita Pizza,French Fries,Mango Juice" data-prices="249,99,69">Add Combo to Cart 🛒</button>
+                    </div>
+
+                    <div class="combo-card">
+                        <div class="combo-badge combo-badge-red">🍗 NON-VEG FEAST</div>
+                        <div class="combo-icon">🍗🍚🥤</div>
+                        <h3>Chicken Lover Combo</h3>
+                        <p>Chicken Biryani + Chicken 65 + Pepsi</p>
+                        <div class="combo-price">
+                            <span class="combo-original">₹418</span>
+                            <span class="combo-offer">₹349</span>
+                        </div>
+                        <p class="combo-save">You save ₹69!</p>
+                        <button class="combo-add-btn" data-items="Chicken Biryani,Chicken 65,Pepsi" data-prices="199,179,40">Add Combo to Cart 🛒</button>
+                    </div>
+
+                    <div class="combo-card">
+                        <div class="combo-badge combo-badge-purple">👨‍👩‍👧‍👦 FAMILY PACK</div>
+                        <div class="combo-icon">🍱🍱🥤🥤</div>
+                        <h3>Family Combo</h3>
+                        <p>2 Chicken Biryani + Dragon Chicken + 2 Pepsi</p>
+                        <div class="combo-price">
+                            <span class="combo-original">₹677</span>
+                            <span class="combo-offer">₹549</span>
+                        </div>
+                        <p class="combo-save">You save ₹128!</p>
+                        <button class="combo-add-btn" data-items="Chicken Biryani,Dragon Chicken,Pepsi" data-prices="199,199,40">Add Combo to Cart 🛒</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-col">
+                  <div class="logo">
+            <img src="logo.png" alt="Flavourez Logo" class="logo-img">
+        </div>
+                <h3>FLAVOUREZ</h3>
+                <p>Delicious food made with love. Fresh ingredients, exceptional taste.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="order.html">Order Now</a></li>
+                    <li><a href="track.html">Track Order</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p>📍 127 Gandhipuram, Coimbatore</p>
+                <p>📞 +91 8667611094</p>
+                <p>✉️ tastyhouse@flavorez.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Flavourez. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="effects.js"></script>
+    <script src="backend-connect.js"></script>
+</body>
+</html>
