@@ -400,6 +400,46 @@
       "upi_txn_id": null,
       "status": "confirmed",
       "created_at": "2026-09-30 07:30:53"
+    },
+    {
+      "id": 21,
+      "tracking_id": "FLZ7WYLYJ",
+      "user_id": null,
+      "name": "Test User",
+      "phone": "8667611094",
+      "email": "test@example.com",
+      "address": "123 Test Street, Coimbatore",
+      "items": "[{\"name\":\"Idli\",\"price\":49,\"qty\":1}]",
+      "subtotal": 49,
+      "discount": 0,
+      "total": 49,
+      "promo_code": null,
+      "payment_method": "cod",
+      "order_type": "delivery",
+      "instructions": null,
+      "upi_txn_id": null,
+      "status": "confirmed",
+      "created_at": "2026-10-05 14:35:35"
+    },
+    {
+      "id": 22,
+      "tracking_id": "FLZQRKP70",
+      "user_id": 1,
+      "name": "Somasundaram K",
+      "phone": "9043783063",
+      "email": "admin@flavorez.com",
+      "address": "9/53a, south Street, sankarapandiapuram",
+      "items": "[{\"name\":\"Pongal\",\"price\":69,\"qty\":1},{\"name\":\"Veg Meals\",\"price\":129,\"qty\":1},{\"name\":\"Chapati Kurma\",\"price\":89,\"qty\":1},{\"name\":\"Chicken Noodles\",\"price\":169,\"qty\":1},{\"name\":\"Chicken Fried Rice\",\"price\":169,\"qty\":1},{\"name\":\"Ghee Podi Idli\",\"price\":69,\"qty\":1}]",
+      "subtotal": 694,
+      "discount": 138.8,
+      "total": 555.2,
+      "promo_code": "FLAVOUR20",
+      "payment_method": "cod",
+      "order_type": "delivery",
+      "instructions": null,
+      "upi_txn_id": null,
+      "status": "confirmed",
+      "created_at": "2026-10-05 14:36:59"
     }
   ],
   "contacts": [
@@ -422,7 +462,7 @@
       "value": 20,
       "min_order": 0,
       "max_uses": 9999,
-      "used_count": 20,
+      "used_count": 21,
       "active": 1,
       "created_at": "2026-09-17 19:34:11"
     },
@@ -530,6 +570,13 @@
       "phone": "9345753220",
       "order_id": 19,
       "used_at": "2026-09-27 15:01:32"
+    },
+    {
+      "id": 11,
+      "code_id": 1,
+      "phone": "9043783063",
+      "order_id": 22,
+      "used_at": "2026-10-05 14:36:59"
     }
   ],
   "menu_items": [
@@ -692,13 +739,13 @@
   ],
   "_counters": {
     "users": 1,
-    "orders": 20,
+    "orders": 22,
     "contacts": 1,
     "promo_codes": 4,
-    "promo_usage": 10,
+    "promo_usage": 11,
     "menu_items": 10,
     "reviews": 3,
-    "whatsapp_logs": 10
+    "whatsapp_logs": 12
   },
   "whatsapp_logs": [
     {
@@ -826,6 +873,24 @@
       "message": "🍽️ *FLAVOUREZ RESTAURANT - ORDER CONFIRMED*\n━━━━━━━━━━━━━━━━━━━━\nHi *Bala Vishnu (Admin)*, your food order has been placed!\n\n📦 *Tracking ID:* `FLZ4C3ZOH`\n⏱️ *Est. Delivery:* 30 Mins\n📍 *Delivery Address:* 9/53a, south Street, sankarapandiapuram\n\n📋 *Order Details:*\n  • Poori Masala × 1 — ₹79\n💰 *Total Paid:* *₹79* (COD)\n━━━━━━━━━━━━━━━━━━━━\n🛵 *Live Order Tracking:*\nhttp://localhost:3000/track.html?id=FLZ4C3ZOH\n\n🧾 *Download Invoice:*\nhttp://localhost:3000/api/orders/FLZ4C3ZOH/receipt\n\nThank you for choosing Flavourez! ✨\n📞 Restaurant Helpline: +91 8667611094",
       "status": "DELIVERED ✅",
       "sent_at": "2026-09-30 07:30:54"
+    },
+    {
+      "id": 11,
+      "tracking_id": "FLZ7WYLYJ",
+      "phone": "918667611094",
+      "customer_name": "Test User",
+      "message": "🍽️ *FLAVOUREZ RESTAURANT - ORDER CONFIRMED*\n━━━━━━━━━━━━━━━━━━━━\nHi *Test User*, your food order has been placed!\n\n📦 *Tracking ID:* `FLZ7WYLYJ`\n⏱️ *Est. Delivery:* 30 Mins\n📍 *Delivery Address:* 123 Test Street, Coimbatore\n\n📋 *Order Details:*\n  • Idli × 1 — ₹49\n💰 *Total Paid:* *₹49* (COD)\n━━━━━━━━━━━━━━━━━━━━\n🛵 *Live Order Tracking:*\nhttp://localhost:3000/track.html?id=FLZ7WYLYJ\n\n🧾 *Download Invoice:*\nhttp://localhost:3000/api/orders/FLZ7WYLYJ/receipt\n\nThank you for choosing Flavourez! ✨\n📞 Restaurant Helpline: +91 8667611094",
+      "status": "DELIVERED ✅",
+      "sent_at": "2026-10-05 14:35:36"
+    },
+    {
+      "id": 12,
+      "tracking_id": "FLZQRKP70",
+      "phone": "919043783063",
+      "customer_name": "Somasundaram K",
+      "message": "🍽️ *FLAVOUREZ RESTAURANT - ORDER CONFIRMED*\n━━━━━━━━━━━━━━━━━━━━\nHi *Somasundaram K*, your food order has been placed!\n\n📦 *Tracking ID:* `FLZQRKP70`\n⏱️ *Est. Delivery:* 30 Mins\n📍 *Delivery Address:* 9/53a, south Street, sankarapandiapuram\n\n📋 *Order Details:*\n  • Pongal × 1 — ₹69\n  • Veg Meals × 1 — ₹129\n  • Chapati Kurma × 1 — ₹89\n  • Chicken Noodles × 1 — ₹169\n  • Chicken Fried Rice × 1 — ₹169\n  • Ghee Podi Idli × 1 — ₹69\n🎁 *Discount Applied (FLAVOUR20):* -₹138.8\n💰 *Total Paid:* *₹555.2* (COD)\n━━━━━━━━━━━━━━━━━━━━\n🛵 *Live Order Tracking:*\nhttp://localhost:3000/track.html?id=FLZQRKP70\n\n🧾 *Download Invoice:*\nhttp://localhost:3000/api/orders/FLZQRKP70/receipt\n\nThank you for choosing Flavourez! ✨\n📞 Restaurant Helpline: +91 8667611094",
+      "status": "DELIVERED ✅",
+      "sent_at": "2026-10-05 14:37:00"
     }
   ]
 }
