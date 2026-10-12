@@ -4,7 +4,18 @@
 // Customer-first Auth, WhatsApp Order Confirmation, Live Tracking & Invoices
 // ============================================================
 
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = (function() {
+  if (window.location.port === '3000') {
+    return `${window.location.protocol}//${window.location.hostname}:3000/api`;
+  }
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    return 'http://localhost:3000/api';
+  }
+  if (window.location.hostname && !window.location.hostname.includes('github.io')) {
+    return `${window.location.protocol}//${window.location.hostname}:3000/api`;
+  }
+  return localStorage.getItem('flz_backend_url') || 'http://localhost:3000/api';
+})();
 
 // ─── LocalStorage DB Helpers for Offline / GitHub Pages ──────
 function getLocalOrders() {
@@ -606,34 +617,6 @@ function autoFillCheckout() {
     } catch {
       // Seamless Fallback
       trackingId = 'FLZ' + Math.floor(100000 + Math.random() * 900000);
-      const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      const localOrderObj = {
-        id: Date.now(),
-        tracking_id: trackingId,
-        user_id: user ? user.id : null,
-        name: body.name,
-        phone: body.phone,
-        email: body.email,
-        address: body.address,
-        items: cart,
-        subtotal: body.subtotal,
-        discount: body.discount,
-        total: body.total,
-        promo_code: body.promo_code,
-        payment_method: body.payment_method,
-        order_type: body.order_type,
-        instructions: body.instructions,
-        status: 'confirmed',
-        created_at: `Today, ${nowTime}`,
-        timeline: [
-          { status: 'confirmed', time: nowTime, done: true },
-          { status: 'preparing', time: null, done: false },
-          { status: 'on_the_way', time: null, done: false },
-          { status: 'delivered', time: null, done: false }
-        ]
-      };
-      saveLocalOrder(localOrderObj);
-
       const itemsText = cart.map(i => `  • ${i.name} × ${i.qty} — ₹${i.price * i.qty}`).join('\n');
       const waText = 
 `🍽️ *FLAVOUREZ RESTAURANT - ORDER CONFIRMED*
@@ -660,10 +643,42 @@ Thank you for choosing Flavourez! ✨
       whatsappUrl = `https://api.whatsapp.com/send?phone=91${body.phone.replace(/\D/g,'').slice(-10)}&text=${encodeURIComponent(waText)}`;
     }
 
-    submitBtn.textContent = origText;
-    submitBtn.disabled = false;
+    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const localOrderObj = {
+      id: Date.now(),
+      tracking_id: trackingId,
+      user_id: user ? user.id : null,
+      name: body.name,
+      phone: body.phone,
+      email: body.email,
+      address: body.address,
+      items: cart,
+      subtotal: body.subtotal,
+      discount: body.discount,
+      total: body.total,
+      promo_code: body.promo_code,
+      payment_method: body.payment_method,
+      order_type: body.order_type,
+      instructions: body.instructions,
+      status: 'confirmed',
+      created_at: `Today, ${nowTime}`,
+      timeline: [
+        { status: 'confirmed', time: nowTime, done: true },
+        { status: 'preparing', time: null, done: false },
+        { status: 'on_the_way', time: null, done: false },
+        { status: 'delivered', time: null, done: false }
+      ]
+    };
+    saveLocalOrder(localOrderObj);
 
     localStorage.setItem('flavourez_last_order', trackingId);
+    localStorage.setItem('flavourez_last_order_obj', JSON.stringify(localOrderObj));
+    localStorage.setItem('flavourez_receipt_cart', JSON.stringify(cart));
+    localStorage.setItem('flavourez_discount_amount', discount);
+    localStorage.setItem('flavourez_promo_code', promoCode || '');
+
+    submitBtn.textContent = origText;
+    submitBtn.disabled = false;
 
     window.activeAppliedPromo = null;
     window.activeAppliedPromoDiscount = 0;
@@ -700,26 +715,49 @@ Thank you for choosing Flavourez! ✨
 
 // ─── PDF INVOICE DOWNLOAD HANDLER ─────────────────────────────
 function downloadOrderPdf(trackingId) {
-  const backendPdfUrl = `${API_BASE}/orders/${trackingId}/receipt`;
-  if (!window.location.hostname.includes('github.io')) {
-    window.open(backendPdfUrl, '_blank');
+  const isBackend = (window.location.port === '3000' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+  if (isBackend) {
+    const backendPdfUrl = `${API_BASE}/orders/${trackingId}/receipt`;
+    const a = document.createElement('a');
+    a.href = backendPdfUrl;
+    a.target = '_blank';
+    a.download = `Flavorez-Receipt-${trackingId}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
     return;
   }
   generatePrintableBill(trackingId);
 }
 
 function generatePrintableBill(trackingId) {
-  const all = getLocalOrders();
-  const order = all.find(o => o.tracking_id === trackingId) || {
-    tracking_id: trackingId,
-    name: 'Valued Customer',
-    phone: '8667611094',
-    address: 'Delivery Address on file',
-    payment_method: 'COD',
-    created_at: new Date().toLocaleString(),
-    total: 249,
-    items: [{ name: 'Flavourez Special Biryani', qty: 1, price: 249 }]
-  };
+  let order = null;
+  const lastOrderJson = localStorage.getItem('flavourez_last_order_obj');
+  if (lastOrderJson) {
+    try {
+      const parsed = JSON.parse(lastOrderJson);
+      if (parsed && (!trackingId || parsed.tracking_id === trackingId)) {
+        order = parsed;
+      }
+    } catch {}
+  }
+  if (!order) {
+    const all = getLocalOrders();
+    order = all.find(o => o.tracking_id === trackingId);
+  }
+  if (!order) {
+    order = {
+      tracking_id: trackingId || 'FLZ' + Math.floor(100000 + Math.random() * 900000),
+      name: 'Valued Customer',
+      phone: '8667611094',
+      address: '127 Gandhipuram, Coimbatore',
+      payment_method: 'COD',
+      created_at: new Date().toLocaleString(),
+      total: 249,
+      discount: 0,
+      items: [{ name: 'Flavourez Special Biryani', qty: 1, price: 249 }]
+    };
+  }
 
   const items = Array.isArray(order.items) ? order.items : JSON.parse(order.items || '[]');
   const printWindow = window.open('', '_blank');
@@ -749,28 +787,29 @@ function generatePrintableBill(trackingId) {
       <div class="header">
         <div class="logo">FLAVOUREZ</div>
         <div class="tagline">Savor the Ultimate Culinary Experience</div>
-        <div style="font-size:11px;color:#888;margin-top:4px;">127 Gandhipuram, Coimbatore | +91 8667611094</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">127 Gandhipuram, Coimbatore | Helpline: +91 8667611094</div>
       </div>
       <div class="details">
         <div><strong>Tracking ID:</strong> <span style="color:#e23744;font-family:monospace;font-size:16px;">${order.tracking_id}</span></div>
         <div><strong>Customer:</strong> ${order.name} (${order.phone})</div>
-        <div><strong>Address:</strong> ${order.address}</div>
-        <div><strong>Date:</strong> ${order.created_at || new Date().toLocaleString()}</div>
-        <div><strong>Payment:</strong> ${(order.payment_method || 'COD').toUpperCase()}</div>
+        <div><strong>Delivery Address:</strong> ${order.address}</div>
+        <div><strong>Order Date:</strong> ${order.created_at || new Date().toLocaleString()}</div>
+        <div><strong>Payment Mode:</strong> ${(order.payment_method || 'COD').toUpperCase()}</div>
       </div>
       <table>
-        <thead><tr><th>Item</th><th style="text-align:center;">Qty</th><th style="text-align:right;">Price</th></tr></thead>
+        <thead><tr><th>Item</th><th style="text-align:center;">Qty</th><th style="text-align:right;">Price</th><th style="text-align:right;">Total</th></tr></thead>
         <tbody>
-          ${items.map(i => `<tr><td>${i.name}</td><td style="text-align:center;">${i.qty}</td><td style="text-align:right;">₹${i.price * i.qty}</td></tr>`).join('')}
+          ${items.map(i => `<tr><td>${i.name}</td><td style="text-align:center;">${i.qty}</td><td style="text-align:right;">₹${i.price}</td><td style="text-align:right;">₹${i.price * i.qty}</td></tr>`).join('')}
         </tbody>
       </table>
+      ${order.discount > 0 ? `<div style="text-align:right;font-size:14px;color:#10b981;margin-bottom:6px;">Discount (${order.promo_code || 'Promo'}): -₹${order.discount}</div>` : ''}
       <div class="total-box">Total Amount: ₹${order.total}</div>
       <div class="footer">
         Thank you for ordering with Flavourez!<br>
         127 Gandhipuram, Coimbatore | Helpline: +91 8667611094
       </div>
       <div class="no-print" style="text-align:center;margin-top:24px;">
-        <button onclick="window.print()" style="padding:10px 24px;background:#ff8c00;color:#fff;border:none;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;">🖨️ Download / Print PDF</button>
+        <button onclick="window.print()" style="padding:10px 24px;background:#ff8c00;color:#fff;border:none;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;">🖨️ Save as PDF / Print</button>
       </div>
       <script>window.onload = function() { setTimeout(function(){ window.print(); }, 400); };</script>
     </body>
