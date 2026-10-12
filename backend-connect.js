@@ -580,6 +580,7 @@ function autoFillCheckout() {
     };
 
     let trackingId = '';
+    let whatsappUrl = '';
 
     try {
       const r = await fetch(`${API_BASE}/orders`, {
@@ -591,6 +592,7 @@ function autoFillCheckout() {
 
       if (!r.ok) throw new Error(d.error || 'Server error');
       trackingId = d.tracking_id;
+      whatsappUrl = d.whatsapp_url;
 
       if (promoCode) {
         try {
@@ -602,10 +604,9 @@ function autoFillCheckout() {
         } catch {}
       }
     } catch {
-      // Seamless Fallback: Generate real tracking ID & save locally
+      // Seamless Fallback
       trackingId = 'FLZ' + Math.floor(100000 + Math.random() * 900000);
       const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
       const localOrderObj = {
         id: Date.now(),
         tracking_id: trackingId,
@@ -632,6 +633,31 @@ function autoFillCheckout() {
         ]
       };
       saveLocalOrder(localOrderObj);
+
+      const itemsText = cart.map(i => `  • ${i.name} × ${i.qty} — ₹${i.price * i.qty}`).join('\n');
+      const waText = 
+`🍽️ *FLAVOUREZ RESTAURANT - ORDER CONFIRMED*
+━━━━━━━━━━━━━━━━━━━━
+Hi *${body.name}*, your food order has been placed!
+
+📦 *Tracking ID:* \`${trackingId}\`
+⏱️ *Est. Delivery:* 30 Mins
+📍 *Delivery Address:* ${body.address}
+
+📋 *Order Details:*
+${itemsText}
+${discount > 0 ? `🎁 *Discount Applied (${promoCode}):* -₹${discount}\n` : ''}💰 *Total Paid:* *₹${total}* (${(body.payment_method || 'COD').toUpperCase()})
+━━━━━━━━━━━━━━━━━━━━
+🛵 *Live Order Tracking:*
+${window.location.origin}/track.html?id=${trackingId}
+
+📄 *Download Invoice:*
+${API_BASE}/orders/${trackingId}/receipt
+
+Thank you for choosing Flavourez! ✨
+📞 Restaurant Helpline: +91 8667611094`;
+
+      whatsappUrl = `https://api.whatsapp.com/send?phone=91${body.phone.replace(/\D/g,'').slice(-10)}&text=${encodeURIComponent(waText)}`;
     }
 
     submitBtn.textContent = origText;
@@ -642,58 +668,25 @@ function autoFillCheckout() {
     window.activeAppliedPromo = null;
     window.activeAppliedPromoDiscount = 0;
 
-    const liveTrackUrl = window.location.origin.includes('github.io')
-      ? `https://bala-vishnu-27.github.io/Flavourez-Restaurant/frontend/track.html?id=${trackingId}`
-      : `${window.location.origin}/frontend/track.html?id=${trackingId}`;
-
-    const itemsSummary = cart.map(i => `• ${i.name} × ${i.qty} — ₹${i.price * i.qty}`).join('\n');
-    const waBillText = 
-`🍽️ *FLAVOUREZ RESTAURANT - ORDER CONFIRMED*
-━━━━━━━━━━━━━━━━━━━━
-Hi *${body.name}*, your food order is confirmed!
-
-📦 *Tracking ID:* \`${trackingId}\`
-📍 *Address:* ${body.address}
-💳 *Payment:* ${(body.payment_method || 'COD').toUpperCase()}
-
-📋 *Items Ordered:*
-${itemsSummary}
-${discount > 0 ? `🎁 *Discount (${promoCode}):* -₹${discount}\n` : ''}💰 *Total Amount:* *₹${total}*
-━━━━━━━━━━━━━━━━━━━━
-🛵 *Live Tracking:*
-${liveTrackUrl}
-
-✨ Thank you for choosing Flavourez!`;
-
-    const restaurantNumber = '918667611094';
-    const waRestaurantUrl = `https://api.whatsapp.com/send?phone=${restaurantNumber}&text=${encodeURIComponent(waBillText)}`;
-    const waShareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waBillText)}`;
-
-    // Auto-open WhatsApp with pre-filled bill
-    try { window.open(waRestaurantUrl, '_blank'); } catch {}
-
     const successMsg = document.getElementById('orderSuccess');
     successMsg.innerHTML = `
-      <div style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.05));border:1px solid #10b981;border-radius:20px;padding:26px;text-align:center;margin-top:16px;">
-        <div style="font-size:48px;margin-bottom:10px;">🎉</div>
+      <div style="background:linear-gradient(135deg,rgba(16,185,129,0.12),rgba(16,185,129,0.05));border:1px solid #10b981;border-radius:20px;padding:30px 24px;text-align:center;margin-top:20px;">
+        <div style="font-size:48px;margin-bottom:8px;">🎉</div>
         <h3 style="color:#10b981;font-size:22px;font-weight:800;margin-bottom:6px;">Order Placed Successfully!</h3>
-        <p style="color:#f4f4f7;margin-bottom:14px;">Your order has been transmitted to our kitchen live 🍳</p>
+        <p style="color:#f4f4f7;margin-bottom:16px;">Your order has been transmitted to our kitchen live 🍳</p>
         
-        <div style="background:rgba(226,55,68,0.12);border:2px dashed #e23744;border-radius:14px;padding:14px 24px;margin:10px 0 20px;display:inline-block;">
-          <p style="color:#8e8e9f;font-size:11px;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em;">Tracking ID</p>
+        <div style="background:rgba(226,55,68,0.08);border:2px dashed #e23744;border-radius:14px;padding:14px 28px;margin:8px 0 22px;display:inline-block;">
+          <p style="color:#8e8e9f;font-size:11px;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.08em;font-weight:700;">TRACKING ID</p>
           <strong style="color:#e23744;font-size:28px;letter-spacing:3px;font-family:monospace;">${trackingId}</strong>
         </div>
 
-        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-          <a href="track.html?id=${trackingId}" style="background:linear-gradient(135deg,#e23744,#ff7e1d);color:#fff;padding:12px 22px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px;">
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="track.html?id=${trackingId}" style="background:linear-gradient(135deg,#e23744,#ff7e1d);color:#fff;padding:12px 24px;border-radius:25px;text-decoration:none;font-weight:700;font-size:14px;box-shadow:0 4px 12px rgba(226,55,68,0.25);">
             🛵 Live Track Order
           </a>
-          <a href="${waRestaurantUrl}" target="_blank" style="background:#25D366;color:#fff;padding:12px 20px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px;">
-            📱 Send Order on WhatsApp
-          </a>
-          <a href="${waShareUrl}" target="_blank" style="background:#17171e;border:1px solid #2b2b38;color:#25D366;padding:12px 18px;border-radius:20px;text-decoration:none;font-weight:700;font-size:14px;">
-            💬 Share Bill
-          </a>
+          <button type="button" onclick="downloadOrderPdf('${trackingId}')" style="background:#1d1d26;border:1px solid #2b2b38;color:#f4f4f7;padding:12px 24px;border-radius:25px;font-weight:600;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;">
+            📄 PDF Invoice
+          </button>
         </div>
       </div>
     `;
@@ -704,6 +697,87 @@ ${liveTrackUrl}
     successMsg.scrollIntoView({ behavior: 'smooth' });
   }, true);
 })();
+
+// ─── PDF INVOICE DOWNLOAD HANDLER ─────────────────────────────
+function downloadOrderPdf(trackingId) {
+  const backendPdfUrl = `${API_BASE}/orders/${trackingId}/receipt`;
+  if (!window.location.hostname.includes('github.io')) {
+    window.open(backendPdfUrl, '_blank');
+    return;
+  }
+  generatePrintableBill(trackingId);
+}
+
+function generatePrintableBill(trackingId) {
+  const all = getLocalOrders();
+  const order = all.find(o => o.tracking_id === trackingId) || {
+    tracking_id: trackingId,
+    name: 'Valued Customer',
+    phone: '8667611094',
+    address: 'Delivery Address on file',
+    payment_method: 'COD',
+    created_at: new Date().toLocaleString(),
+    total: 249,
+    items: [{ name: 'Flavourez Special Biryani', qty: 1, price: 249 }]
+  };
+
+  const items = Array.isArray(order.items) ? order.items : JSON.parse(order.items || '[]');
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) return;
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>Flavorez-Receipt-${order.tracking_id}</title>
+      <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 36px; color: #222; background: #fff; max-width: 600px; margin: auto; }
+        .header { text-align: center; border-bottom: 2px solid #ff8c00; padding-bottom: 16px; margin-bottom: 20px; }
+        .logo { font-size: 28px; font-weight: 900; color: #ff8c00; letter-spacing: 2px; }
+        .tagline { font-size: 13px; color: #666; margin-top: 4px; }
+        .details { font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th { text-align: left; padding: 8px 0; border-bottom: 1px solid #ddd; font-size: 13px; color: #555; }
+        td { padding: 10px 0; border-bottom: 1px solid #eee; font-size: 14px; }
+        .total-box { text-align: right; margin-top: 16px; font-size: 18px; font-weight: 800; color: #e23744; }
+        .footer { text-align: center; font-size: 12px; color: #888; margin-top: 30px; border-top: 1px dashed #ccc; padding-top: 15px; }
+        @media print { .no-print { display: none; } }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <div class="logo">FLAVOUREZ</div>
+        <div class="tagline">Savor the Ultimate Culinary Experience</div>
+        <div style="font-size:11px;color:#888;margin-top:4px;">127 Gandhipuram, Coimbatore | +91 8667611094</div>
+      </div>
+      <div class="details">
+        <div><strong>Tracking ID:</strong> <span style="color:#e23744;font-family:monospace;font-size:16px;">${order.tracking_id}</span></div>
+        <div><strong>Customer:</strong> ${order.name} (${order.phone})</div>
+        <div><strong>Address:</strong> ${order.address}</div>
+        <div><strong>Date:</strong> ${order.created_at || new Date().toLocaleString()}</div>
+        <div><strong>Payment:</strong> ${(order.payment_method || 'COD').toUpperCase()}</div>
+      </div>
+      <table>
+        <thead><tr><th>Item</th><th style="text-align:center;">Qty</th><th style="text-align:right;">Price</th></tr></thead>
+        <tbody>
+          ${items.map(i => `<tr><td>${i.name}</td><td style="text-align:center;">${i.qty}</td><td style="text-align:right;">₹${i.price * i.qty}</td></tr>`).join('')}
+        </tbody>
+      </table>
+      <div class="total-box">Total Amount: ₹${order.total}</div>
+      <div class="footer">
+        Thank you for ordering with Flavourez!<br>
+        127 Gandhipuram, Coimbatore | Helpline: +91 8667611094
+      </div>
+      <div class="no-print" style="text-align:center;margin-top:24px;">
+        <button onclick="window.print()" style="padding:10px 24px;background:#ff8c00;color:#fff;border:none;border-radius:20px;font-weight:700;font-size:14px;cursor:pointer;">🖨️ Download / Print PDF</button>
+      </div>
+      <script>window.onload = function() { setTimeout(function(){ window.print(); }, 400); };</script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+}
 
 // ─── PROMO CODE ENGINE ────────────────────────────────────────
 (function patchPromoCode() {
