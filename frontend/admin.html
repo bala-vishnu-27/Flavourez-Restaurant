@@ -834,6 +834,9 @@
             <button class="pill-btn" onclick="exportOrdersToCSV()">
               <span>📥</span> Export CSV
             </button>
+            <button class="pill-btn" onclick="clearTestOrders()" style="background:rgba(239,68,68,0.15); color:#ef4444; border-color:rgba(239,68,68,0.3);" title="Delete all sample and test orders">
+              <span>🗑️</span> Clear Test Orders
+            </button>
             <button class="pill-btn primary" onclick="loadOrders(1)">
               <span>🔄</span> Refresh
             </button>
@@ -1673,6 +1676,7 @@
             <div style="display:flex; gap:6px;">
               <button class="action-btn-sm" title="Print Kitchen Slip (KOT)" onclick="printKot(${JSON.stringify(o).replace(/"/g, '&quot;')})">🖨️ KOT</button>
               <a href="${waLink}" target="_blank" class="action-btn-wa" title="WhatsApp Customer">📱 WA</a>
+              <button class="action-btn-sm" style="color:#ef4444; border-color:rgba(239,68,68,0.3); background:rgba(239,68,68,0.1);" title="Delete Order" onclick="deleteOrder(${o.id}, '${o.tracking_id}')">🗑️</button>
             </div>
           </td>
         </tr>
@@ -1761,6 +1765,46 @@
     }
     showToast(`✅ ${trackingId} updated to: ${status.toUpperCase()}`);
     loadOrders(currentPage);
+    loadStats();
+  }
+
+  async function deleteOrder(id, trackingId) {
+    if (!confirm(`Are you sure you want to delete order ${trackingId}?`)) return;
+    try {
+      const r = await fetch(`${API}/admin/orders/${id}`, {
+        method: 'DELETE',
+        headers: adminHeaders()
+      });
+      if (r.ok) {
+        showToast(`🗑️ Order ${trackingId} deleted!`);
+      }
+    } catch {}
+
+    const custom = JSON.parse(localStorage.getItem('flz_custom_orders') || '[]');
+    const filtered = custom.filter(o => o.id != id && o.tracking_id !== trackingId);
+    localStorage.setItem('flz_custom_orders', JSON.stringify(filtered));
+
+    showToast(`🗑️ Order ${trackingId} removed!`);
+    loadOrders(currentPage);
+    loadStats();
+  }
+
+  async function clearTestOrders() {
+    if (!confirm('Are you sure you want to clear test orders? (Default demo orders will remain)')) return;
+    try {
+      const r = await fetch(`${API}/admin/orders/clear-test`, {
+        method: 'POST',
+        headers: adminHeaders()
+      });
+      if (r.ok) {
+        const d = await r.json();
+        showToast(`🧹 ${d.message}`);
+      }
+    } catch {}
+
+    localStorage.removeItem('flz_custom_orders');
+    showToast('🧹 Test orders cleared successfully!');
+    loadOrders(1);
     loadStats();
   }
 
