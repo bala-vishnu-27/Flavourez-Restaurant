@@ -136,14 +136,37 @@ app.use((err, req, res, next) => {
 });
 
 // ─── Start Server ─────────────────────────────────────────────
-server.listen(PORT, () => {
+const os = require('os');
+function getLocalNetworkIp() {
+  const nets = os.networkInterfaces();
+  for (const name of Object.keys(nets)) {
+    if (/wi-fi|wlan|wireless/i.test(name)) {
+      for (const net of nets[name]) {
+        if (net.family === 'IPv4' && !net.internal) return net.address;
+      }
+    }
+  }
+  for (const name of Object.keys(nets)) {
+    if (!/virtual|vbox|vmware|pseudo/i.test(name)) {
+      for (const net of nets[name]) {
+        if (net.family === 'IPv4' && !net.internal) return net.address;
+      }
+    }
+  }
+  return 'localhost';
+}
+
+server.listen(PORT, '0.0.0.0', () => {
+  const lanIp = getLocalNetworkIp();
   console.log('\n');
-  console.log('╔══════════════════════════════════════════════╗');
-  console.log('║         🍽️  FLAVOUREZ BACKEND SERVER          ║');
-  console.log('╠══════════════════════════════════════════════╣');
-  console.log(`║  🌐 API Server  : http://localhost:${PORT}       ║`);
-  console.log(`║  🔌 WebSocket   : ws://localhost:${PORT}         ║`);
-  console.log(`║  🔐 Admin Panel : http://localhost:${PORT}/admin.html ║`);
-  console.log('╚══════════════════════════════════════════════╝');
-  console.log('\n  📡 Waiting for connections...\n');
+  console.log('╔══════════════════════════════════════════════════════════════╗');
+  console.log('║               🍽️  FLAVOUREZ BACKEND SERVER                   ║');
+  console.log('╠══════════════════════════════════════════════════════════════╣');
+  console.log(`║  🌐 Laptop Web  : http://localhost:${PORT}                       ║`);
+  console.log(`║  📱 Mobile Test : http://${lanIp}:${PORT}/order.html       ║`);
+  console.log(`║  🔌 WebSocket   : ws://localhost:${PORT}                         ║`);
+  console.log(`║  🔐 Admin Panel : http://localhost:${PORT}/admin.html          ║`);
+  console.log('╚══════════════════════════════════════════════════════════════╝');
+  console.log('\n  📡 Waiting for incoming orders...\n');
 });
+
